@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informatika Kelas Modern</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(135deg,#07111f,#0f172a,#111827);
+    color:white;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* FOTO BACKGROUND */
+
+#bgfoto{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+}
+
+/* OVERLAY */
+
+.bg-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.60);
+    z-index:-2;
+}
+
+/* MUSIC BUTTON */
+
+#musicBtn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:99999;
+    border:none;
+    outline:none;
+    padding:14px 24px;
+    border-radius:50px;
+    font-size:14px;
+    font-weight:600;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(135deg,#06b6d4,#8b5cf6);
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+#musicBtn:hover{
+    transform:scale(1.05);
+}
+
+/* QUICK NAV */
+
+.quick-nav{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:99999;
+}
+
+.quick-nav a{
+    padding:10px 14px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    text-decoration:none;
+    border-radius:12px;
+    font-size:13px;
+    backdrop-filter:blur(10px);
+    transition:0.3s;
+}
+
+.quick-nav a:hover{
+    background:#38bdf8;
+    transform:translateX(5px);
+}
+
+/* BACKGROUND */
+
+body::before{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:rgba(0,255,255,0.08);
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    filter:blur(90px);
+}
+
+body::after{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:rgba(140,0,255,0.08);
+    border-radius:50%;
+    bottom:-150px;
+    right:-150px;
+    filter:blur(90px);
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(15px);
+    background:rgba(0,0,0,0.3);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 25px;
+}
+
+.logo{
+    font-size:1.4rem;
+    font-weight:700;
+    background:linear-gradient(to right,#38bdf8,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav ul{
+    display:flex;
+    gap:18px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-size:0.9rem;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:4rem;
+    line-height:1.2;
+    margin-bottom:25px;
+    background:linear-gradient(to right,#38bdf8,#a855f7);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* BOX WARNING */
+
+.pulse-red{
+    padding:25px;
+    border-radius:20px;
+    border:2px solid rgba(255,0,0,0.8);
+    background:rgba(255,0,0,0.06);
+    box-shadow:0 0 10px rgba(255,0,0,0.4);
+    animation:pulseGlow 1.8s infinite;
+    line-height:1.9;
+    font-size:1rem;
+    color:#fff;
+}
+
+@keyframes pulseGlow{
+
+    0%{
+        box-shadow:0 0 5px rgba(255,0,0,0.4),
+                   0 0 10px rgba(255,0,0,0.2);
+    }
+
+    50%{
+        box-shadow:0 0 20px rgba(255,0,0,0.9),
+                   0 0 40px rgba(255,0,0,0.5);
+    }
+
+    100%{
+        box-shadow:0 0 5px rgba(255,0,0,0.4),
+                   0 0 10px rgba(255,0,0,0.2);
+    }
+
+}
+
+/* BUTTON */
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#06b6d4,#8b5cf6);
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+}
+
+/* SECTION */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:100px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:2.5rem;
+    margin-bottom:15px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:30px;
+    transition:0.4s;
+    backdrop-filter:blur(10px);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#38bdf8;
+    box-shadow:0 15px 35px rgba(56,189,248,0.2);
+}
+
+.card h3{
+    font-size:1.4rem;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#d1d5db;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+.card a{
+    display:inline-block;
+    padding:12px 22px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0ea5e9,#9333ea);
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    color:#cbd5e1;
+    border-top:1px solid rgba(255,255,255,0.1);
+    margin-top:50px;
+}
+
+/* RESPONSIVE HP */
+
+@media screen and (max-width:768px){
+
+    html,body{
+        overflow-x:hidden;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:12px;
+        padding:15px;
+        text-align:center;
+    }
+
+    .logo{
+        font-size:1.2rem;
+    }
+
+    nav ul{
+        justify-content:center;
+        gap:10px;
+    }
+
+    nav ul li a{
+        font-size:13px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:120px 18px 70px;
+    }
+
+    .hero h1{
+        font-size:2.3rem;
+        line-height:1.3;
+    }
+
+    .pulse-red{
+        padding:18px;
+        border-radius:16px;
+        font-size:14px;
+        line-height:1.9;
+    }
+
+    .pulse-red a{
+        width:100%;
+        max-width:260px;
+        text-align:center;
+        font-size:14px;
+    }
+
+    .container{
+        padding:70px 15px;
+    }
+
+    .section-title h2{
+        font-size:2rem;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .card{
+        padding:25px;
+        border-radius:20px;
+    }
+
+    .card a{
+        width:100%;
+        text-align:center;
+    }
+
+    .quick-nav{
+        left:10px;
+        bottom:10px;
+    }
+
+    .quick-nav a{
+        font-size:11px;
+        padding:8px 10px;
+    }
+
+    #musicBtn{
+        right:10px;
+        bottom:10px;
+        padding:10px 14px;
+        font-size:11px;
+    }
+
+    footer{
+        font-size:13px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FOTO -->
+<img src="FOTO.jpeg" id="bgfoto">
+
+<!-- OVERLAY -->
+<div class="bg-overlay"></div>
+
+<!-- MUSIC -->
+<audio id="bgmusic" loop preload="auto">
+<source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button id="musicBtn">🔊 MUSIC ON</button>
+
+<!-- QUICK NAV -->
+<div class="quick-nav">
+    <a href="#bab1">📊 Data</a>
+    <a href="#bab2">⚙️ Algoritma</a>
+    <a href="#bab3">🌐 Dampak</a>
+    <a href="#bab4">🧠 Artefak</a>
+</div>
+
+<header>
+
+<nav>
+
+<div class="logo">KISI KISI 2026</div>
+
+<ul>
+<li><a href="#bab1">Analisis Data</a></li>
+<li><a href="#bab2">Algoritma</a></li>
+<li><a href="#bab3">Dampak Informatika</a></li>
+<li><a href="#bab4">Artefak</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>TUGAS AKHIR</h1>
+
+<p class="pulse-red">
+
+Peserta didik membuat hasil karya artefak komputasional berupa perangkat keras komputer dari bahan bebas dan kreatif seperti kardus atau bahan daur ulang lainnya.
+
+<br><br>
+
+Dokumentasikan berbentuk video dalam kelompok. Jika anggota kelompok berhalangan hadir harus ada keterangan jelas.
+
+<br><br>
+
+POSTING PEMBUATAN TUGAS AKHIR DI IG KELAS
+<br>
+TAG @ekaaminhidayat
+<br>
+Kirim Link postingan Ke WA di bawah
+<br>
+#kecamatansindang #smpn1sindang
+
+<br><br>
+
+<a href="https://wa.me/6282119341837" target="_blank"
+style="
+display:inline-block;
+padding:14px 28px;
+border-radius:50px;
+background:linear-gradient(135deg,#25D366,#128C7E);
+color:white;
+font-weight:600;
+text-decoration:none;
+margin-top:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+">
+📱 Kirim Link
+</a>
+
+</p>
+
+<a href="#materi" class="btn">Lihat Materi</a>
+
+</div>
+
+</section>
+
+<section class="container" id="materi">
+
+<div class="section-title">
+<h2>MATERI DAN KISI KISI</h2>
+<p>SELAMAT MENGHAPAL</p>
+</div>
+
+<div class="grid">
+
+<div class="card" id="bab1">
+<h3>Analisis Data</h3>
+<p>Jenis Data dan Pengelolaan Data dari Internet</p>
+<a href="https://nesasinkuberaksi-source.github.io/analisisdata/">Buka Materi</a>
+</div>
+
+<div class="card" id="bab2">
+<h3>Algoritma dan Pemrograman</h3>
+<p>Menjelaskan tentang algoritma.</p>
+<a href="https://nesasinkuberaksi-source.github.io/algoritma/">Buka Materi</a>
+</div>
+
+<div class="card" id="bab3">
+<h3>Dampak Sosial Informatika</h3>
+<p>Menjelaskan jenis media sosial dan dampaknya.</p>
+<a href="https://nesasinkuberaksi-source.github.io/dampakinfor/">Buka Materi</a>
+</div>
+
+<div class="card" id="bab4">
+<h3>Praktik Lintas Bidang</h3>
+<p>Artefak Komputasional</p>
+<a href="https://nesasinkuberaksi-source.github.io/artefakkomputasional/" target="_blank">Buka Materi</a>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Informatika Modern | Website Presentasi Interaktif</p>
+</footer>
+
+<script>
+
+/* MUSIC */
+
+const music = document.getElementById("bgmusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = localStorage.getItem("music") !== "off";
+
+function updateMusic(){
+
+    if(isPlaying){
+
+        musicBtn.innerHTML = "🔊 MUSIC ON";
+        music.play().catch(()=>{});
+
+    }else{
+
+        musicBtn.innerHTML = "🔈 MUSIC OFF";
+        music.pause();
+
+    }
+
+}
+
+updateMusic();
+
+musicBtn.addEventListener("click",()=>{
+
+    isPlaying = !isPlaying;
+
+    localStorage.setItem("music", isPlaying ? "on" : "off");
+
+    updateMusic();
+
+});
+
+document.body.addEventListener("click",()=>{
+
+    if(isPlaying){
+        music.play().catch(()=>{});
+    }
+
+},{once:true});
+
+</script>
+
+</body>
+</html>
